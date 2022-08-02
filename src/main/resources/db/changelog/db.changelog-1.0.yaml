@@ -1,0 +1,61 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: smyvin
+      changes:
+        - createTable:
+            tableName: document
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: date
+                  type: date
+        - createTable:
+            tableName: dictionary_value
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar
+        - createTable:
+            tableName: test_entity
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: document_id
+                  type: uuid
+                  constraints:
+                    - foreignKeyName: fk_document
+                      references: document(id)
+              - column:
+                  name: dictionary_value_id
+                  type: uuid
+                  constraints:
+                    - foreignKeyName: fk_dodictionary_value
+                      references: dictionary_value(id)
+              - column:
+                  name: sort_order
+                  type: boolean
+              - column:
+                  name: test_id
+                  type: uuid
+              - column:
+                  name: test_name
+                  type: varchar(50)
+
+
